@@ -1,0 +1,20 @@
+{
+  "name": "backbone-web-copmonents-examples",
+  "version": "0.1.0",
+  "description": "Examples of ways to use Backbone.js with Web Components APIs",
+  "main": "index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andrewrota/backbone-web-components-examples.git"
+  },
+  "author": "Andrew Rota <rota.andrew@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewrota/backbone-web-components-examples/issues"
+  },
+  "homepage": "https://github.com/andrewrota/backbone-web-components-examples",
+  "devDependencies": {
+    "gulp": "~3.8.10"
+  }
+}
