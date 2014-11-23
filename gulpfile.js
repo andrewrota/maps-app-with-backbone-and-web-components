@@ -29,7 +29,8 @@ gulp.task('webpack', function() {
         module: {
             preLoaders: [{
                 test: /\.js$/,
-                loader: 'jsx-loader?stripTypes'
+                loader: 'jsx-loader?stripTypes',
+                exclude: /node_modules/
             }],
             loaders: [{
                 test: /\.js$/,

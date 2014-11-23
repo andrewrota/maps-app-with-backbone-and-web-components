@@ -3,12 +3,12 @@
 var backbone = require('backbone');
 
 var AppView = backbone.View.extend({
-    render: function() {
-        this.$el.text('Hello, world');
-        return this;
-    }
+    tagName: 'google-map'
 });
-
 var app = new AppView({
-    el: 'body'
-}).render();
+    attributes: {
+        latitude: '42.368410',
+        longitude: '-71.090044',
+        zoom: '15'
+    }
+}).$el.appendTo('#container');

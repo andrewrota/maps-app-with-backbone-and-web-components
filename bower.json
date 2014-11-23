@@ -17,5 +17,9 @@
     "test",
     "tests",
     "__tests__"
-  ]
+  ],
+  "dependencies": {
+    "google-map": "GoogleWebComponents/google-map#~0.4.0",
+    "webcomponentsjs": "~0.5.1"
+  }
 }
