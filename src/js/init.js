@@ -19,8 +19,12 @@ var AppView = backbone.View.extend({
     render: function() {
         var self = this;
         this.subViews.forEach(function(view) {
+            // Temporary strategy pattern to set toolbar elements
+            // @todo use additional views and templates for toolbars
             if(view.$el.attr('main')) {
                 view.$el.html('<core-toolbar> <paper-button> <core-icon icon="menu"></core-icon> </paper-button><span flex>My notes</span><paper-button> <core-icon icon="search"></core-icon> </paper-button> <paper-button> <core-icon icon="more-vert"></core-icon> </paper-button> </core-toolbar>');
+            } else if(view.$el.attr('drawer')) {
+                view.$el.html('<core-toolbar>Menu</core-toolbar>');
             }
             self.$el.append(view.el);
         });
