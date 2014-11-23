@@ -1,4 +1,10 @@
-backbone-web-components-examples
-================================
+# backbone-web-components-examples
 
-Examples of ways to use Backbone.js with Web Components APIs
+## Install
+
+    gem install scss-lint
+    npm install -g gulp
+
+## Build
+
+    gulp build
