@@ -14,8 +14,6 @@ var scsslint = require('gulp-scss-lint');
 var minifyCSS = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 require('jsx-loader');
-
-
 var paths = {
     html: ['src/**/*.html'],
     scripts: ['src/js/*.js'],
@@ -28,13 +26,16 @@ var paths = {
 gulp.task('webpack', function() {
     del(['dist/**/*.js']);
     return gulp.src('src/js/' + paths.scriptInit).pipe(webpack({
-        module : {
-            preLoaders: [
-                { test: /\.js$/, loader: 'jsx-loader?stripTypes' }
-            ],
-            loaders: [
-                { test: /\.js$/, loader: 'jshint-loader' }
-            ]
+        module: {
+            preLoaders: [{
+                test: /\.js$/,
+                loader: 'jsx-loader?stripTypes'
+            }],
+            loaders: [{
+                test: /\.js$/,
+                loader: 'jshint-loader',
+                exclude: /node_modules/
+            }]
         },
         context: __dirname + '/src',
         devtool: '#source-map',
@@ -45,13 +46,13 @@ gulp.task('webpack', function() {
     })).pipe(gulp.dest('dist/js'));
 });
 gulp.task('clean-dist', function() {
-     del('dist');
+    del('dist');
 });
 gulp.task('jshint', function() {
-     return gulp.src(paths.scripts).pipe(jshint()).pipe(jshint.reporter(stylish))/*.pipe(jshint.reporter('fail'))*/;
+    return gulp.src(paths.scripts).pipe(jshint()).pipe(jshint.reporter(stylish)) /*.pipe(jshint.reporter('fail'))*/ ;
 });
 gulp.task('jshint-gulp', function() {
-     return gulp.src('gulpfile.js').pipe(jshint()).pipe(jshint.reporter(stylish))/*.pipe(jshint.reporter('fail'))*/;
+    return gulp.src('gulpfile.js').pipe(jshint()).pipe(jshint.reporter(stylish)) /*.pipe(jshint.reporter('fail'))*/ ;
 });
 gulp.task('html', function() {
     del(['dist/**/*.html']);
@@ -67,17 +68,8 @@ gulp.task('fonts', function() {
 });
 gulp.task('sass', function() {
     del(['dist/css']);
-    return gulp.src(paths.styles)
-            .pipe(scsslint())
-            .pipe(sourcemaps.init())
-            .pipe(sass())
-            .pipe(csslint())
-            .pipe(csslint.reporter())
-            .pipe(minifyCSS())
-            .pipe(sourcemaps.write('../maps'))
-            .pipe(gulp.dest('dist/css/'));
+    return gulp.src(paths.styles).pipe(scsslint()).pipe(sourcemaps.init()).pipe(sass()).pipe(csslint()).pipe(csslint.reporter()).pipe(minifyCSS()).pipe(sourcemaps.write('../maps')).pipe(gulp.dest('dist/css/'));
 });
-
 gulp.task('watch', function() {
     gulp.watch(paths.scripts, ['webpack']);
     gulp.watch(paths.html, ['html']);

@@ -1,8 +1,14 @@
 /* @flow */
 'use strict';
-module.exports.hello = function(name: string): string {
-    return 'Hello, ' + name + '!';
-};
-if(window && window.console) {
-    window.console.log(module.exports.hello('world'));
-}
+var backbone = require('backbone');
+
+var AppView = backbone.View.extend({
+    render: function() {
+        this.$el.text('Hello, world');
+        return this;
+    }
+});
+
+var app = new AppView({
+    el: 'body'
+}).render();
