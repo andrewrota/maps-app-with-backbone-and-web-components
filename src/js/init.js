@@ -1,14 +1,36 @@
 /* @flow */
 'use strict';
 var backbone = require('backbone');
+window.$ = require('jquery');
+
+var PanelView = backbone.View.extend({
+    tagName: 'core-header-panel'
+});
 
 var AppView = backbone.View.extend({
-    tagName: 'google-map'
+    tagName: 'core-drawer-panel',
+    initialize: function() {
+        this.subViews = [
+            new PanelView({attributes: {'drawer' : true}}),
+            new PanelView({attributes: {'main' : true}})
+        ];
+        return this;
+    },
+    render: function() {
+        var self = this;
+        this.subViews.forEach(function(view) {
+            if(view.$el.attr('main')) {
+                view.$el.html('<core-toolbar> <paper-button> <core-icon icon="menu"></core-icon> </paper-button><span flex>My notes</span><paper-button> <core-icon icon="search"></core-icon> </paper-button> <paper-button> <core-icon icon="more-vert"></core-icon> </paper-button> </core-toolbar>');
+            }
+            self.$el.append(view.el);
+        });
+        return this;
+    }
 });
 var app = new AppView({
     attributes: {
-        latitude: '42.368410',
-        longitude: '-71.090044',
-        zoom: '15'
+        responsiveWidth: '600px'
     }
-}).$el.appendTo('#container');
+});
+app.$el.appendTo('#container');
+app.render();
