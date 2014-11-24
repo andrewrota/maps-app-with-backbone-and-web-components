@@ -7,6 +7,10 @@ var PanelView = backbone.View.extend({
     tagName: 'core-header-panel'
 });
 
+var ToolbarView = backbone.view.extend({
+    tagName: 'core-toolbar'
+});
+
 var AppView = backbone.View.extend({
     tagName: 'core-drawer-panel',
     initialize: function() {
