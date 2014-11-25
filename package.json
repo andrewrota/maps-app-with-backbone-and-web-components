@@ -41,6 +41,9 @@
   },
   "dependencies": {
     "jquery": "~2.1.1",
-    "backbone": "~1.1.2"
+    "backbone": "~1.1.2",
+    "hogan.js": "~3.0.2",
+    "loader-utils": "~0.2.5",
+    "mustache-loader": "~0.2.0"
   }
 }
