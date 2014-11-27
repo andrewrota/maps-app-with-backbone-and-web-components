@@ -1,5 +1,6 @@
 'use strict';
 var _ = require('underscore');
+var Backbone = require('backbone');
 
 var BaseView = require('base/baseView.js');
 var MainPanelView = require('views/mainPanelView.js');
