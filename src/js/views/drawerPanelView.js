@@ -1,9 +1,10 @@
 'use strict';
-var HeaderPanelView = require('views/headerPanelView.js');
+var BaseView = require('base/baseView.js');
 var ToolbarView = require('views/toolbarView.js');
 var drawerToolbar = require('drawerToolbar.mustache');
 
-module.exports = HeaderPanelView.extend({
+module.exports = BaseView.extend({
+    tagName: 'core-header-panel',
     attributes: {
         drawer: true
     },

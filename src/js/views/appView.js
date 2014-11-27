@@ -2,16 +2,16 @@
 var _ = require('underscore');
 
 var BaseView = require('base/baseView.js');
-var MainHeaderPanelView = require('views/mainHeaderPanelView.js');
-var DrawerHeaderPanelView = require('views/drawerHeaderPanelView.js');
+var MainPanelView = require('views/mainPanelView.js');
+var DrawerPanelView = require('views/drawerPanelView.js');
 
 var messageBus = require('messageBus.js');
 
 module.exports = BaseView.extend({
     tagName: 'core-drawer-panel',
     subViews: {
-        mainPanel: new MainHeaderPanelView(),
-        drawerPanel: new DrawerHeaderPanelView()
+        mainPanel: new MainPanelView(),
+        drawerPanel: new DrawerPanelView()
     },
     postInitialize: function() {
         messageBus.on('toggleDrawer', _.bind(this.toggleDrawerPanel, this));
