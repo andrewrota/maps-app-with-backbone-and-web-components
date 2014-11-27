@@ -1,3 +1,4 @@
+/* jshint node:true */
 'use strict';
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
@@ -36,7 +37,11 @@ gulp.task('webpack', function() {
                 test: /\.js$/,
                 loader: 'jshint-loader',
                 exclude: /node_modules/
-            }]
+            },{
+                test: /\.mustache$/,
+                loader: 'mustache',
+                exclude: /node_modules/
+           } ]
         },
         context: __dirname + '/src',
         devtool: '#source-map',
