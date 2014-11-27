@@ -5,7 +5,7 @@ var Backbone = require('backbone');
 var messageBus = require('messageBus.js');
 
 module.exports = BaseView.extend({
-    tagName: 'core-menu',
+    tagName: 'core-selector',
     events: {
         'click paper-item': 'handleClickItem'
     },
@@ -20,6 +20,11 @@ module.exports = BaseView.extend({
         long: '-74.0059',
         zoom: 10
     }]),
+    postRender: function() {
+      // @TODO refactor selected city to be driven by events
+      messageBus.trigger('showCity', this.collection.at(0));
+      this.el.setAttribute('selected', 0);
+    },
     handleClickItem: function(event) {
         messageBus.trigger('showCity', this.collection.findWhere({
             name: event.currentTarget.getAttribute('data-item-id')
