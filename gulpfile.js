@@ -14,6 +14,7 @@ var csslint = require('gulp-csslint');
 var scsslint = require('gulp-scss-lint');
 var minifyCSS = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
+var path = require('path');
 require('jsx-loader');
 var paths = {
     html: ['src/**/*.html'],
@@ -28,6 +29,9 @@ gulp.task('webpack', function() {
     del(['dist/**/*.js']);
     return gulp.src('src/js/' + paths.scriptInit).pipe(webpack({
         module: {
+            alias: {
+                template: path.join(__dirname, 'src/templates')
+            },
             preLoaders: [{
                 test: /\.js$/,
                 loader: 'jsx-loader?stripTypes',
@@ -37,11 +41,14 @@ gulp.task('webpack', function() {
                 test: /\.js$/,
                 loader: 'jshint-loader',
                 exclude: /node_modules/
-            },{
+            }, {
                 test: /\.mustache$/,
                 loader: 'mustache',
                 exclude: /node_modules/
-           } ]
+            }]
+        },
+        resolve: {
+            modulesDirectories: ['web_modules', 'node_modules', 'src/js', 'src/templates', '.']
         },
         context: __dirname + '/src',
         devtool: '#source-map',
@@ -74,7 +81,7 @@ gulp.task('fonts', function() {
 });
 gulp.task('sass', function() {
     del(['dist/css']);
-    return gulp.src(paths.styles).pipe(scsslint()).pipe(sourcemaps.init()).pipe(sass()).pipe(csslint()).pipe(csslint.reporter()).pipe(minifyCSS()).pipe(sourcemaps.write('../maps')).pipe(gulp.dest('dist/css/'));
+    return gulp.src(paths.styles). /*pipe(scsslint()).*/ pipe(sourcemaps.init()).pipe(sass()).pipe(csslint()).pipe(csslint.reporter()).pipe(minifyCSS()).pipe(sourcemaps.write('../maps')).pipe(gulp.dest('dist/css/'));
 });
 gulp.task('watch', function() {
     gulp.watch(paths.scripts, ['webpack']);
