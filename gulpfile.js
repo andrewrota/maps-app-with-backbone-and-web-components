@@ -18,7 +18,8 @@ var path = require('path');
 require('jsx-loader');
 var paths = {
     html: ['src/**/*.html'],
-    scripts: ['src/js/*.js'],
+    scripts: ['src/js/**/*.js'],
+    templates: ['src/templates/**/*.mustache'],
     scriptInit: 'init.js',
     styles: ['src/sass/*.scss'],
     fonts: 'src/**/*.woff',
@@ -84,7 +85,7 @@ gulp.task('sass', function() {
     return gulp.src(paths.styles). /*pipe(scsslint()).*/ pipe(sourcemaps.init()).pipe(sass()).pipe(csslint()).pipe(csslint.reporter()).pipe(minifyCSS()).pipe(sourcemaps.write('../maps')).pipe(gulp.dest('dist/css/'));
 });
 gulp.task('watch', function() {
-    gulp.watch(paths.scripts, ['webpack']);
+    gulp.watch(paths.scripts.concat(paths.templates), ['webpack']);
     gulp.watch(paths.html, ['html']);
     gulp.watch(paths.styles, ['sass']);
     gulp.watch(paths.images, ['images']);

@@ -1,26 +1,23 @@
 'use strict';
-var BaseView = require('base/baseView.js');
-var PanelView = require('views/panelView.js');
+var _ = require('underscore');
 
-// Templates
-var mainToolbar = require('mainToolbar.mustache');
-var drawerToolbar = require('drawerToolbar.mustache');
+var BaseView = require('base/baseView.js');
+var MainHeaderPanelView = require('views/mainHeaderPanelView.js');
+var DrawerHeaderPanelView = require('views/drawerHeaderPanelView.js');
+
+var messageBus = require('messageBus.js');
 
 module.exports = BaseView.extend({
     tagName: 'core-drawer-panel',
-    initialize: function() {
-        this.subViews = [
-            new PanelView({attributes: {'main' : true}, template: mainToolbar}),
-            new PanelView({attributes: {'drawer' : true}, template: drawerToolbar})
-        ];
+    subViews: {
+        mainPanel: new MainHeaderPanelView(),
+        drawerPanel: new DrawerHeaderPanelView()
+    },
+    postInitialize: function() {
+        messageBus.on('toggleDrawer', _.bind(this.toggleDrawerPanel, this));
         return this;
     },
-    render: function() {
-        var self = this;
-        this.subViews.forEach(function(view) {
-            view.render();
-            self.$el.append(view.el);
-        });
-        return this;
+    toggleDrawerPanel: function() {
+        this.el.togglePanel();
     }
 });

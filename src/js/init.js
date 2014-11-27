@@ -3,7 +3,7 @@
 'use strict';
 
 var AppView = require('views/appView.js');
-window.$ = require('jquery');
+window.$ = window.jQuery = require('jquery');
 
 var app = new AppView({
     attributes: {
