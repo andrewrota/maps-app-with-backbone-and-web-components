@@ -2,8 +2,10 @@
 /* @flow */
 'use strict';
 
-var AppView = require('views/appView.js');
-window.$ = window.jQuery = require('jquery');
+import * as AppView from 'views/appView.js';
+import * as jQuery from 'jquery';
+
+window.$ = window.jQuery = jQuery;
 
 var app = new AppView({
     attributes: {

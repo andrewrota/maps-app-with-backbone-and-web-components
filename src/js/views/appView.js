@@ -1,14 +1,13 @@
 'use strict';
-var _ = require('underscore');
-var Backbone = require('backbone');
+import * as _ from 'underscore';
+import * as Backbone from 'backbone';
 
-var BaseView = require('base/baseView.js');
-var MainPanelView = require('views/mainPanelView.js');
-var DrawerPanelView = require('views/drawerPanelView.js');
+import BaseView from 'base/baseView.js';
+import MainPanelView from 'views/mainPanelView.js';
+import DrawerPanelView from 'views/drawerPanelView.js';
+import * as messageBus from 'messageBus.js';
 
-var messageBus = require('messageBus.js');
-
-module.exports = BaseView.extend({
+export default BaseView.extend({
     tagName: 'core-drawer-panel',
     subViews: {
         mainPanel: new MainPanelView(),

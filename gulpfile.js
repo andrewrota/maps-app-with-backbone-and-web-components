@@ -35,12 +35,12 @@ gulp.task('webpack', function() {
             },
             preLoaders: [{
                 test: /\.js$/,
-                loader: 'jsx-loader?stripTypes',
+                loader: 'jshint-loader',
                 exclude: /node_modules/
             }],
             loaders: [{
                 test: /\.js$/,
-                loader: 'jshint-loader',
+                loader: '6to5-loader?modules=commonInterop',
                 exclude: /node_modules/
             }, {
                 test: /\.mustache$/,

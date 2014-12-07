@@ -1,4 +1,5 @@
 'use strict';
-var Backbone = require('backbone');
-var _ = require('underscore');
-module.exports = _.extend({}, Backbone.Events);
+
+import * as Backbone from 'backbone';
+import * as _ from 'underscore';
+export default  _.extend({}, Backbone.Events);

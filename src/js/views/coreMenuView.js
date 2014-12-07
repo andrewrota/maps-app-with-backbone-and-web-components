@@ -1,10 +1,10 @@
 'use strict';
-var BaseView = require('base/baseView.js');
-var Backbone = require('backbone');
+import * as BaseView from 'base/baseView.js';
+import * as Backbone from 'backbone';
 
-var messageBus = require('messageBus.js');
+import * as messageBus from 'messageBus.js';
 
-module.exports = BaseView.extend({
+export default BaseView.extend({
     tagName: 'core-selector',
     events: {
         'click paper-item': 'handleClickItem'

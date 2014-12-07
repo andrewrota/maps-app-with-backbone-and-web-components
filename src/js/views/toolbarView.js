@@ -1,7 +1,7 @@
 'use strict';
-var BaseView = require('base/baseView.js');
-var messageBus = require('messageBus.js');
-module.exports = BaseView.extend({
+import * as BaseView from 'base/baseView.js';
+import * as messageBus from 'messageBus.js';
+export default BaseView.extend({
     tagName: 'core-toolbar',
     events: {
       'click .menu-button' : 'openMenu'

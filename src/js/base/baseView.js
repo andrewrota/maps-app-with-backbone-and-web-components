@@ -1,7 +1,7 @@
 'use strict';
-var Backbone = require('backbone');
-var _ = require('underscore');
-module.exports = Backbone.View.extend({
+import * as Backbone from 'backbone';
+import * as _ from 'underscore';
+export default Backbone.View.extend({
     initialize: function(options) {
         this.options = options || {};
         this.postInitialize();
@@ -38,3 +38,4 @@ module.exports = Backbone.View.extend({
         return this;
     }
 });
+

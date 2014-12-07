@@ -1,9 +1,9 @@
 'use strict';
-var _ = require('underscore');
-var BaseView = require('base/baseView.js');
-var messageBus = require('messageBus.js');
+import * as _ from 'underscore';
+import * as BaseView from 'base/baseView.js';
+import messageBus from 'messageBus.js';
 
-module.exports = BaseView.extend({
+export default BaseView.extend({
     postInitialize: function() {
         this.listenTo(messageBus, 'showCity', _.bind(this.showCity, this));
     },
@@ -23,3 +23,4 @@ module.exports = BaseView.extend({
         this.el.setAttribute('zoom', this.model.get('zoom'));
     }
 });
+

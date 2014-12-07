@@ -1,10 +1,10 @@
 'use strict';
-var BaseView = require('base/baseView.js');
-var GoogleMapView = require('views/googleMapView.js');
-var ToolbarView = require('views/toolbarView.js');
-var mainToolbar = require('mainToolbar.mustache');
+import * as BaseView from 'base/baseView.js';
+import * as GoogleMapView from 'views/googleMapView.js';
+import * as ToolbarView from 'views/toolbarView.js';
+import * as mainToolbar from 'mainToolbar.mustache';
 
-module.exports = BaseView.extend({
+export default BaseView.extend({
     postInitialize: function() {
         this.subViews = {
             toolbarView: new ToolbarView({template: mainToolbar}),
