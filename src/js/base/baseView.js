@@ -2,8 +2,8 @@
 import * as Backbone from 'backbone';
 import * as _ from 'underscore';
 export default Backbone.View.extend({
-    initialize: function(options) {
-        this.options = options || {};
+    initialize: function(options = {}) {
+        this.options = options;
         this.postInitialize();
         return this;
     },
@@ -18,7 +18,7 @@ export default Backbone.View.extend({
         var template = this.options.template || this.template;
         var subViews = this.options.subViews || this.subViews;
         if (subViews) {
-            _.forEach(this.subViews, function(view) {
+            _.forEach(this.subViews, view => {
                 view.render();
                 self.$el.append(view.el);
             });
